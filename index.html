@@ -5,7 +5,6 @@
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Full-Screen Hero</title>
   <style>
-    /* Постави файла от генерираното изображение като bg.jpg до този index.html */
     :root{
       --nav-bg: rgba(0,0,0,0.25);
       --nav-text:#fff;
@@ -29,14 +28,12 @@
       align-items:center;
       justify-content:center;
     }
-    /* Overlay лек градиент за четливост */
     .hero::after{
       content:"";
       position:absolute;inset:0;
       background:linear-gradient(to top, rgba(0,0,0,0.35), rgba(0,0,0,0.15));
       pointer-events:none;
     }
-    /* NAV */
     .nav{
       position:fixed;top:0;left:0;right:0;z-index:50;
       display:flex;align-items:center;justify-content:center;gap:24px;
@@ -53,7 +50,6 @@
     }
     .nav a:hover{ background:var(--hover); }
     .nav a:active{ transform:translateY(1px); }
-    /* Телефон икона (fixed) */
     .call-btn{
       position:fixed;right:18px;bottom:18px;z-index:60;
       display:inline-flex;align-items:center;justify-content:center;
@@ -66,14 +62,12 @@
     }
     .call-btn:hover{ background:rgba(0,0,0,0.7); transform:translateY(-2px); }
     .call-btn svg{ width:26px;height:26px; fill:#ffffff; }
-    /* Централен текст (по избор) */
     .headline{
       position:relative;z-index:10;text-align:center;padding:0 24px;
       text-shadow:0 2px 12px rgba(0,0,0,.6);
     }
     .headline h1{ margin:0 0 6px;font-size:clamp(28px,5vw,56px);font-weight:700}
     .headline p{ margin:0;font-size:clamp(14px,2.2vw,18px);opacity:.9}
-    /* Дребни подобрения */
     @media (max-width:520px){
       .nav{ gap:12px;padding:10px 12px }
       .nav a{ font-size:14px;padding:7px 10px }
@@ -92,9 +86,20 @@
   <!-- FULLSCREEN ИЗОБРАЖЕНИЕ -->
   <section class="hero" role="img" aria-label="Дървена маса със залез, коняк, телефон и кожена книга">
     <div class="headline">
-      <h1>Коняка</h1>
-      <p>.</p>
+      <h1>Вечерен уют</h1>
+      <p>Коняк, книга и тишина по залез.</p>
     </div>
+    <!-- Невидим бутон върху бутилката -->
+    <a href="#products" style="
+      position:absolute;
+      left:50%;
+      bottom:20%;
+      transform:translateX(-50%);
+      width:120px;
+      height:300px;
+      z-index:20;
+      display:block;
+    " aria-label="Виж продуктите"></a>
   </section>
 
   <!-- FIXED ИКОНА ЗА ТЕЛЕФОН -->
@@ -104,7 +109,7 @@
     </svg>
   </a>
 
-   <!-- СЕКЦИЯ ПРОДУКТИ -->
+  <!-- СЕКЦИЯ ПРОДУКТИ -->
   <section id="products" style="min-height:100vh;padding:60px 20px;background:#111;display:flex;align-items:center;justify-content:center;flex-direction:column;text-align:center;">
     <h2>Нашите продукти</h2>
     <p>Тук ще намерите описание и галерия на предлаганите продукти.</p>
@@ -113,7 +118,7 @@
   <!-- СЕКЦИЯ КОНТАКТИ -->
   <section id="contacts" style="min-height:100vh;padding:60px 20px;background:#222;display:flex;align-items:center;justify-content:center;flex-direction:column;text-align:center;">
     <h2>Контакти</h2>
-    <p>Телефон: +359 888274414<br>Email: example@example.com</p>
+    <p>Телефон: +359 000 000 000<br>Email: example@example.com</p>
   </section>
 
   <!-- СЕКЦИЯ ЗА НАС -->
@@ -121,6 +126,5 @@
     <h2>За нас</h2>
     <p>Кратко представяне на екипа или историята на проекта.</p>
   </section>
-
 </body>
 </html>
