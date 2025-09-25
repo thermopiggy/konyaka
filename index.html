@@ -76,8 +76,28 @@
     .contacts-icons a svg{
       width:32px;height:32px;fill:#fff;transition:fill .25s;
     }
-    .contacts-icons a.facebook:hover svg{ fill:#1877f2; } /* Facebook синьо */
-    .contacts-icons a.youtube:hover svg{ fill:#ff0000; }  /* YouTube червено */
+    .contacts-icons a.facebook:hover svg{ fill:#1877f2; }
+    .contacts-icons a.youtube:hover svg{ fill:#ff0000; }
+    .contact-links{
+      display:flex;
+      flex-direction:column;
+      gap:12px;
+      margin:20px 0;
+    }
+    .contact-links a{
+      display:inline-block;
+      padding:10px 18px;
+      border-radius:8px;
+      background:rgba(255,255,255,0.1);
+      color:#fff;
+      text-decoration:none;
+      font-weight:600;
+      transition:background .2s, transform .1s;
+    }
+    .contact-links a:hover{
+      background:rgba(255,255,255,0.25);
+      transform:translateY(-2px);
+    }
     @media (max-width:520px){
       .nav{ gap:12px;padding:10px 12px }
       .nav a{ font-size:14px;padding:7px 10px }
@@ -127,10 +147,10 @@
   <!-- СЕКЦИЯ КОНТАКТИ -->
   <section id="contacts" style="min-height:100vh;padding:60px 20px;background:#222;display:flex;align-items:center;justify-content:center;flex-direction:column;text-align:center;">
     <h2>Контакти</h2>
-    <p>
-      <a href="tel:+359888274414" style="color:#fff;text-decoration:none;">+359 888274414</a><br>
-      <a href="mailto:lordof@therings.com" style="color:#fff;text-decoration:none;">lordof@therings.com</a>
-    </p>
+    <div class="contact-links">
+      <a href="tel:+359888274414">📞 +359 888274414</a>
+      <a href="mailto:lordof@therings.com">✉️ lordof@therings.com</a>
+    </div>
     <div class="contacts-icons">
       <a class="facebook" href="https://facebook.com" target="_blank" aria-label="Facebook">
         <svg viewBox="0 0 24 24"><path d="M22 12c0-5.52-4.48-10-10-10S2 6.48 2 12c0 5 3.66 9.13 8.44 9.88v-6.99H7.9v-2.89h2.54V9.41c0-2.5 1.49-3.89 3.77-3.89 1.09 0 2.24.2 2.24.2v2.46h-1.26c-1.24 0-1.63.77-1.63 1.56v1.87h2.78l-.44 2.89h-2.34v6.99C18.34 21.13 22 17 22 12z"/></svg>
