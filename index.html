@@ -73,6 +73,28 @@
     .contacts-icons a svg{width:32px;height:32px;fill:#fff;transition:fill .25s}
     .contacts-icons a.facebook:hover svg{fill:#1877f2}
     .contacts-icons a.youtube:hover svg{fill:#ff0000}
+    @media(max-width:768px){
+  .nav-links{
+    display:none;
+    position:absolute;
+    top:100%;
+    right:0;
+    width:220px;
+    background:var(--nav-bg); /* същата прозрачност като nav */
+    flex-direction:column;
+    padding:10px;
+  }
+  .nav-links.show{display:flex;}
+  .hamburger{display:flex;}
+
+  .lang-flags{
+    margin-top:10px;
+    flex-direction:column; /* вертикално подреждане */
+    gap:12px;
+    align-items:flex-start;
+  }
+}
+
   </style>
 </head>
 <body>
