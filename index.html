@@ -62,7 +62,6 @@
       display:none;
       flex-direction:column;
       cursor:pointer;
-      margin-left:auto;
     }
     .hamburger span {
       height:3px;
@@ -91,7 +90,26 @@
       .nav-links.show {
         display:flex;
       }
-      .hamburger {display:flex;}
+      .hamburger {display:flex; margin-left:12px;}
+    }
+
+    /* Флагове */
+    .lang-flags {
+      display:flex;
+      gap:6px;
+      margin-left:auto;
+    }
+    .lang-flags img {
+      width:24px;
+      height:16px;
+      object-fit:cover;
+      border:1px solid #fff;
+      border-radius:2px;
+      cursor:pointer;
+      transition:transform 0.2s;
+    }
+    .lang-flags img:hover {
+      transform:scale(1.1);
     }
 
     .call-btn{
@@ -233,9 +251,23 @@
   <!-- ПРОЗРАЧЕН FIXED NAV -->
   <nav class="nav" aria-label="Основна навигация">
     <img src="lod.png" alt="Logo" class="logo">
+
+    <div class="lang-flags">
+      <a href="index-en.html" aria-label="English">
+        <img src="flag-uk.png" alt="English">
+      </a>
+      <a href="index-ru.html" aria-label="Русский">
+        <img src="flag-ru.png" alt="Русский">
+      </a>
+      <a href="index-bg.html" aria-label="Български">
+        <img src="flag-bg.png" alt="Български">
+      </a>
+    </div>
+
     <div class="hamburger" onclick="document.querySelector('.nav-links').classList.toggle('show')">
       <span></span><span></span><span></span>
     </div>
+
     <div class="nav-links">
       <a href="#products" aria-label="Продукти">ПРОДУКТИ</a>
       <a href="#contacts" aria-label="Контакти">КОНТАКТИ</a>
