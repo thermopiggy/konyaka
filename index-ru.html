@@ -1,0 +1,206 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Full-Screen Hero</title>
+  <style>
+    :root{--nav-bg:rgba(0,0,0,0.25);--nav-text:#fff;--hover:rgba(255,255,255,0.15);}
+    html,body{height:100%;margin:0}
+    body{font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;color:#fff;background:#000;}
+
+    /* HERO */
+    .hero{position:relative;height:100vh;background:url("konyaka.png") center/cover no-repeat;display:flex;align-items:center;justify-content:center;}
+    .hero::after{content:"";position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,0.35),rgba(0,0,0,0.15));}
+    .headline{position:relative;z-index:10;text-align:center;text-shadow:0 2px 12px rgba(0,0,0,.6);}
+    .headline img{max-width:400px;width:100%;}
+
+    /* NAV */
+    .nav{position:fixed;top:0;left:0;right:0;z-index:50;display:flex;align-items:center;gap:16px;padding:14px 20px;background:var(--nav-bg);backdrop-filter:saturate(140%) blur(8px);}
+    .nav img.logo{height:60px;margin-top:-20px;margin-bottom:-20px;filter:drop-shadow(0 2px 6px rgba(0,0,0,.7));}
+    .nav a{color:var(--nav-text);text-decoration:none;font-weight:600;font-size:15px;padding:8px 12px;border-radius:999px;transition:.2s;}
+    .nav a:hover{background:var(--hover);}
+    .nav-links{display:flex;gap:20px;margin-left:auto;align-items:center;}
+
+    /* FLAGS */
+    .lang-flags{display:flex;gap:8px;align-items:center;}
+    .lang-flags svg{width:28px;height:18px;border:1px solid rgba(255,255,255,.85);border-radius:2px;box-shadow:0 0 0 1px rgba(0,0,0,.2);transition:.2s;}
+    .lang-flags svg:hover{transform:scale(1.08);box-shadow:0 2px 6px rgba(0,0,0,.35);}
+
+    /* HAMBURGER */
+    .hamburger{display:none;flex-direction:column;cursor:pointer;margin-left:auto;}
+    .hamburger span{height:3px;width:24px;background:#fff;margin:4px 0;border-radius:2px;}
+    @media(max-width:768px){
+      .nav-links{display:none;position:absolute;top:100%;right:0;width:220px;background:rgba(0,0,0,0.85);flex-direction:column;padding:10px;}
+      .nav-links.show{display:flex;}
+      .hamburger{display:flex;}
+      .lang-flags{margin-top:10px;justify-content:center;}
+    }
+
+    /* CALL BTN */
+    .call-btn{position:fixed;right:18px;bottom:18px;z-index:60;display:flex;align-items:center;justify-content:center;width:56px;height:56px;border-radius:50%;background:rgba(0,0,0,0.55);backdrop-filter:saturate(140%) blur(6px);transition:.2s;}
+    .call-btn:hover{background:rgba(0,0,0,0.7);transform:translateY(-2px);}
+    .call-btn svg{width:26px;height:26px;fill:#fff}
+
+    /* ABOUT */
+    #about{min-height:100vh;padding:80px 20px;background:#333;display:flex;align-items:center;justify-content:center;}
+    .about-container{display:flex;align-items:center;justify-content:center;gap:30px;flex-wrap:wrap;max-width:1000px;}
+    .about-img{max-width:420px;width:100%;border-radius:8px;box-shadow:0 4px 12px rgba(0,0,0,0.4);}
+    .about-text{max-width:500px;text-align:left;}
+    #about h2{margin:0 0 12px}
+
+    /* PRODUCTS */
+    .products{min-height:100vh;background:#f9f7f4;color:#000;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:80px 20px;}
+    .slider{position:relative;max-width:360px;width:100%;overflow:hidden;}
+    .slides{display:flex;transition:transform .4s ease;}
+    .product-item{min-width:100%;text-align:center;}
+    .product-item img{max-width:300px;width:100%;}
+    .product-item h3{margin:20px 0 10px;font-size:22px;color:#222}
+    .btn-more{display:inline-block;padding:10px 22px;border:1px solid #a00;color:#a00;font-weight:700;text-decoration:none;transition:.2s;}
+    .btn-more:hover{background:#a00;color:#fff;}
+    .prev,.next{position:absolute;top:50%;transform:translateY(-50%);background:rgba(0,0,0,.5);border:none;color:#fff;font-size:26px;padding:6px 12px;cursor:pointer;}
+    .prev{left:0}.next{right:0}
+    .dots{text-align:center;margin-top:15px}
+    .dots span{display:inline-block;width:10px;height:10px;margin:0 5px;background:#bbb;border-radius:50%;cursor:pointer;transition:.3s}
+    .dots span.active{background:#a00}
+
+    /* CONTACTS */
+    #contacts{min-height:100vh;padding:80px 20px;background:#222;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;}
+    .contact-links{display:flex;flex-direction:column;gap:12px;margin:20px 0}
+    .contact-links a{padding:10px 18px;border-radius:8px;background:rgba(255,255,255,0.1);color:#fff;text-decoration:none;font-weight:600;transition:.2s;}
+    .contact-links a:hover{background:rgba(255,255,255,0.25);transform:translateY(-2px);}
+    .contacts-icons{display:flex;gap:20px;justify-content:center;margin-top:20px}
+    .contacts-icons a svg{width:32px;height:32px;fill:#fff;transition:fill .25s}
+    .contacts-icons a.facebook:hover svg{fill:#1877f2}
+    .contacts-icons a.youtube:hover svg{fill:#ff0000}
+    .contacts-icons a.instagram:hover svg{fill:#E1306C}
+    @media(max-width:768px){
+  .nav-links{
+    display:none;
+    position:absolute;
+    top:100%;
+    right:0;
+    width:220px;
+    background:var(--nav-bg); /* та же прозрачность, что и у nav */
+    flex-direction:column;
+    padding:10px;
+  }
+  .nav-links.show{display:flex;}
+  .hamburger{display:flex;}
+
+  .lang-flags{
+    margin-top:10px;
+    flex-direction:column; /* вертикально */
+    gap:12px;
+    align-items:flex-start;
+  }
+}
+  </style>
+</head>
+<body>
+  <nav class="nav">
+    <img src="lod.png" alt="Логотип" class="logo">
+
+    <div class="hamburger" onclick="document.querySelector('.nav-links').classList.toggle('show')">
+      <span></span><span></span><span></span>
+    </div>
+
+    <div class="nav-links">
+      <a href="#products">ПРОДУКЦИЯ</a>
+      <a href="#contacts">КОНТАКТЫ</a>
+      <a href="#about">О НАС</a>
+
+      <div class="lang-flags">
+        <!-- UK -->
+        <a href="index-en.html"><svg viewBox="0 0 60 30"><rect width="60" height="30" fill="#012169"/><polygon points="0,0 60,30 60,20 0,0" fill="#fff"/><polygon points="60,0 0,30 0,20 60,0" fill="#fff"/><polygon points="0,0 60,30 50,30 0,10" fill="#C8102E"/><polygon points="60,0 0,30 10,30 60,10" fill="#C8102E"/><rect x="25" width="10" height="30" fill="#fff"/><rect y="10" width="60" height="10" fill="#fff"/><rect x="27" width="6" height="30" fill="#C8102E"/><rect y="12" width="60" height="6" fill="#C8102E"/></svg></a>
+        <!-- RU -->
+        <a href="index-ru.html"><svg viewBox="0 0 3 2"><rect width="3" height="2" fill="#fff"/><rect y="0.6667" width="3" height="0.6667" fill="#0039A6"/><rect y="1.3333" width="3" height="0.6667" fill="#D52B1E"/></svg></a>
+        <!-- BG -->
+        <a href="index.html"><svg viewBox="0 0 9 6"><rect width="9" height="6" fill="#D62612"/><rect width="9" height="4" fill="#00966E"/><rect width="9" height="2" fill="#fff"/></svg></a>
+      </div>
+    </div>
+  </nav>
+
+  <section class="hero"><div class="headline"><img src="lod.png" alt="Логотип Lord of the Drinks"></div></section>
+
+  <section id="about">
+    <div class="about-container">
+      <img src="tanks.png" alt="Бочки" class="about-img">
+      <div class="about-text">
+        <h2>О нас</h2>
+        <p>
+          В <strong>Lord of the Drinks</strong> мы создаём бренди с характером и традициями, вдохновлённый аутентичными болгарскими землями и богатым наследием виноделия.  
+          Наша дистиллерия сочетает классическое медленное выдерживание в дубовых бочках с современными методами контроля качества.  
+          Каждая бутылка — плод страсти, опыта и внимания к деталям: от выбора лучшего винограда до последней капли в бокале.  
+          Мы верим, что настоящий бренди не просто пьют — его переживают как момент удовольствия, тепла и единения.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section id="products" class="products">
+    <h2>Наша продукция</h2>
+    <div class="slider">
+      <div class="slides">
+        <div class="product-item"><img src="rakia1.png" alt="LOD Original 0,7L"><h3>LOD Original 0,7L</h3><a href="#more1" class="btn-more">ПОДРОБНЕЕ</a></div>
+        <div class="product-item"><img src="rakia2.png" alt="LOD Cherry 0,7L"><h3>LOD Cherry 0,7L</h3><a href="#more2" class="btn-more">ПОДРОБНЕЕ</a></div>
+        <div class="product-item"><img src="rakia3.png" alt="LOD 12yr 0,7L"><h3>LOD 12 лет 0,7L</h3><a href="#more3" class="btn-more">ПОДРОБНЕЕ</a></div>
+      </div>
+      <button class="prev" aria-label="Предыдущий">&#10094;</button><button class="next" aria-label="Следующий">&#10095;</button>
+      <div class="dots"></div>
+    </div>
+  </section>
+
+  <section id="contacts">
+    <h2>Контакты</h2>
+    <div class="contact-links">
+      <a href="tel:+359888274414">+359 888 274 414</a>
+      <a href="mailto:lod40@gmail.com">lod40@gmail.com</a>
+    </div>
+    <div class="contacts-icons">
+      <a class="facebook" href="https://facebook.com" target="_blank" aria-label="Facebook">
+        <svg viewBox="0 0 24 24"><path d="M22 12c0-5.52-4.48-10-10-10S2 6.48 2 12c0 5 3.66 9.13 8.44 9.88v-6.99H7.9v-2.89h2.54V9.41c0-2.5 1.49-3.89 3.77-3.89 1.09 0 2.24.2 2.24.2v2.46h-1.26c-1.24 0-1.63.77-1.63 1.56v1.87h2.78л-.44 2.89h-2.34v6.99C18.34 21.13 22 17 22 12z"/></svg>
+      </a>
+      <a class="youtube" href="https://youtube.com" target="_blank" aria-label="YouTube">
+        <svg viewBox="0 0 24 24"><path d="M21.8 8.001s-.2-1.4-.8-2c-.8-.8-1.7-.8-2.1-.9C16.2 4.9 12 4.9 12 4.9h-.1s-4.2 0-6.9.2c-.4 0-1.3.1-2.1.9-.6.6-.8 2-.8 2S2 9.6 2 11.2v1.6c0 1.6.2 3.2.2 3.2s.2 1.4.8 2c.8.8 1.9.8 2.4.9 1.7.2 7 .2 7 .2s4.2 0 6.9-.2c.4 0 1.3-.1 2.1-.9.6-.6.8-2 .8-2s.2-1.6.2-3.2v-1.6c0-1.6-.2-3.2-.2-3.2zM10 14.7V9.3l5.2 2.7-5.2 2.7z"/></svg>
+      </a>
+      <a class="instagram" href="https://instagram.com" target="_blank" aria-label="Instagram">
+        <svg viewBox="0 0 24 24"><path d="M7 2C4.243 2 2 4.243 2 7v10c0 2.757 2.243 5 5 5h10c2.757 0 5-2.243 5-5V7c0-2.757-2.243-5-5-5H7zm0 2h10c1.654 0 3 1.346 3 3v10c0 1.654-1.346 3-3 3H7c-1.654 0-3-1.346-3-3V7c0-1.654 1.346-3 3-3zm5 2a5 5 0 100 10 5 5 0 000-10zm0 2a3 3 0 110 6 3 3 0 010-6zm4.5-.25a1.25 1.25 0 100 2.5 1.25 1.25 0 000-2.5z"/></svg>
+      </a>
+    </div>
+  </section>
+
+  <a class="call-btn" href="tel:+359888274414" aria-label="Позвонить">
+    <svg viewBox="0 0 24 24"><path d="М6.62 10.79a15.05 15.05 0 006.59 6.59l2.2-2.2a1 1 0 011.02-.24c1.12.37 2.33.57 3.57.57a1 1 0 011 1V21a1 1 0 01-1 1C10.85 22 2 13.15 2 2a1 1 0 011-1h3.5a1 1 0 011 1c0 1.24.2 2.45.57 3.57a1 1 0 01-.24 1.02l-2.2 2.2z"/></svg>
+  </a>
+
+  <script>
+    const slides=document.querySelector('.slides');
+    const slideCount=document.querySelectorAll('.product-item').length;
+    const dotsContainer=document.querySelector('.dots');
+    let index=0,auto;
+
+    for(let i=0;i<slideCount;i++){
+      const d=document.createElement('span');
+      d.onclick=()=>{showSlide(i);resetAuto()};
+      dotsContainer.appendChild(d);
+    }
+    const dots=dotsContainer.querySelectorAll('span');
+
+    function showSlide(i){
+      index=(i+slideCount)%slideCount;
+      slides.style.transform=`translateX(-${index*100}%)`;
+      dots.forEach((dot,k)=>dot.classList.toggle('active',k===index));
+    }
+
+    document.querySelector('.next').onclick=()=>{showSlide(index+1);resetAuto()};
+    document.querySelector('.prev').onclick=()=>{showSlide(index-1);resetAuto()};
+
+    function startAuto(){auto=setInterval(()=>showSlide(index+1),5000)}
+    function resetAuto(){clearInterval(auto);startAuto()}
+
+    showSlide(0);
+    startAuto();
+  </script>
+</body>
+</html>
