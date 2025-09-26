@@ -20,20 +20,21 @@
     .nav img.logo{height:60px;margin-top:-20px;margin-bottom:-20px;filter:drop-shadow(0 2px 6px rgba(0,0,0,.7));}
     .nav a{color:var(--nav-text);text-decoration:none;font-weight:600;font-size:15px;padding:8px 12px;border-radius:999px;transition:.2s;}
     .nav a:hover{background:var(--hover);}
-    .nav-links{display:flex;gap:20px;margin-left:auto;}
+    .nav-links{display:flex;gap:20px;margin-left:auto;align-items:center;}
 
     /* FLAGS */
-    .lang-flags{display:flex;gap:8px;margin-left:auto;align-items:center;}
+    .lang-flags{display:flex;gap:8px;align-items:center;}
     .lang-flags svg{width:28px;height:18px;border:1px solid rgba(255,255,255,.85);border-radius:2px;box-shadow:0 0 0 1px rgba(0,0,0,.2);transition:.2s;}
     .lang-flags svg:hover{transform:scale(1.08);box-shadow:0 2px 6px rgba(0,0,0,.35);}
 
     /* HAMBURGER */
-    .hamburger{display:none;flex-direction:column;cursor:pointer;margin-left:12px;}
+    .hamburger{display:none;flex-direction:column;cursor:pointer;margin-left:auto;}
     .hamburger span{height:3px;width:24px;background:#fff;margin:4px 0;border-radius:2px;}
     @media(max-width:768px){
       .nav-links{display:none;position:absolute;top:100%;right:0;width:220px;background:rgba(0,0,0,0.85);flex-direction:column;padding:10px;}
       .nav-links.show{display:flex;}
       .hamburger{display:flex;}
+      .lang-flags{margin-top:10px;justify-content:center;}
     }
 
     /* CALL BTN */
@@ -78,15 +79,6 @@
   <nav class="nav">
     <img src="lod.png" alt="Logo" class="logo">
 
-    <div class="lang-flags">
-      <!-- UK -->
-      <a href="index-en.html"><svg viewBox="0 0 60 30"><rect width="60" height="30" fill="#012169"/><polygon points="0,0 60,30 60,20 0,0" fill="#fff"/><polygon points="60,0 0,30 0,20 60,0" fill="#fff"/><polygon points="0,0 60,30 50,30 0,10" fill="#C8102E"/><polygon points="60,0 0,30 10,30 60,10" fill="#C8102E"/><rect x="25" width="10" height="30" fill="#fff"/><rect y="10" width="60" height="10" fill="#fff"/><rect x="27" width="6" height="30" fill="#C8102E"/><rect y="12" width="60" height="6" fill="#C8102E"/></svg></a>
-      <!-- RU -->
-      <a href="index-ru.html"><svg viewBox="0 0 3 2"><rect width="3" height="2" fill="#fff"/><rect y="0.6667" width="3" height="0.6667" fill="#0039A6"/><rect y="1.3333" width="3" height="0.6667" fill="#D52B1E"/></svg></a>
-      <!-- BG -->
-      <a href="index-bg.html"><svg viewBox="0 0 9 6"><rect width="9" height="6" fill="#D62612"/><rect width="9" height="4" fill="#00966E"/><rect width="9" height="2" fill="#fff"/></svg></a>
-    </div>
-
     <div class="hamburger" onclick="document.querySelector('.nav-links').classList.toggle('show')">
       <span></span><span></span><span></span>
     </div>
@@ -95,6 +87,15 @@
       <a href="#products">ПРОДУКТИ</a>
       <a href="#contacts">КОНТАКТИ</a>
       <a href="#about">ЗА НАС</a>
+
+      <div class="lang-flags">
+        <!-- UK -->
+        <a href="index-en.html"><svg viewBox="0 0 60 30"><rect width="60" height="30" fill="#012169"/><polygon points="0,0 60,30 60,20 0,0" fill="#fff"/><polygon points="60,0 0,30 0,20 60,0" fill="#fff"/><polygon points="0,0 60,30 50,30 0,10" fill="#C8102E"/><polygon points="60,0 0,30 10,30 60,10" fill="#C8102E"/><rect x="25" width="10" height="30" fill="#fff"/><rect y="10" width="60" height="10" fill="#fff"/><rect x="27" width="6" height="30" fill="#C8102E"/><rect y="12" width="60" height="6" fill="#C8102E"/></svg></a>
+        <!-- RU -->
+        <a href="index-ru.html"><svg viewBox="0 0 3 2"><rect width="3" height="2" fill="#fff"/><rect y="0.6667" width="3" height="0.6667" fill="#0039A6"/><rect y="1.3333" width="3" height="0.6667" fill="#D52B1E"/></svg></a>
+        <!-- BG -->
+        <a href="index-bg.html"><svg viewBox="0 0 9 6"><rect width="9" height="6" fill="#D62612"/><rect width="9" height="4" fill="#00966E"/><rect width="9" height="2" fill="#fff"/></svg></a>
+      </div>
     </div>
   </nav>
 
@@ -105,13 +106,12 @@
       <img src="tanks.png" alt="Tanks" class="about-img">
       <div class="about-text">
         <h2>За нас</h2>
-<p>
-  Ние от <strong>Lord of the Drinks</strong> създаваме коняк с характер и традиция, вдъхновен от автентичните български земи и богатото наследство на винопроизводството.  
-  Нашата дестилерия съчетава класическите техники на бавно отлежаване в дъбови бъчви с модерни методи за контрол на качеството.  
-  Всяка бутилка е плод на страст, опит и внимание към детайла – от избора на най-доброто грозде до последната капка в чашата ви.  
-  Вярваме, че истинският коняк не просто се пие, а се преживява – като момент на удоволствие, топлина и споделеност.
-</p>
-</p>
+        <p>
+          Ние от <strong>Lord of the Drinks</strong> създаваме коняк с характер и традиция, вдъхновен от автентичните български земи и богатото наследство на винопроизводството.  
+          Нашата дестилерия съчетава класическите техники на бавно отлежаване в дъбови бъчви с модерни методи за контрол на качеството.  
+          Всяка бутилка е плод на страст, опит и внимание към детайла – от избора на най-доброто грозде до последната капка в чашата ви.  
+          Вярваме, че истинският коняк не просто се пие, а се преживява – като момент на удоволствие, топлина и споделеност.
+        </p>
       </div>
     </div>
   </section>
