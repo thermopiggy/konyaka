@@ -100,6 +100,29 @@
   min-height: 100vh;
   overflow: hidden;
 }
+.product-detail {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 30px;
+  max-width: 1000px;
+  margin: 80px auto;
+  padding: 20px;
+}
+.product-detail img {
+  max-width: 300px;
+  width: 100%;
+}
+.product-detail .desc {
+  max-width: 500px;
+  text-align: left;
+}
+@media(max-width:768px){
+  .product-detail {
+    flex-direction: column;
+    text-align: center;
+  }
+}
 
 
   </style>
@@ -147,16 +170,51 @@
 
   <section id="products" class="products">
     <h2>Нашите продукти</h2>
-    <div class="slider">
-      <div class="slides">
-        <div class="product-item"><img src="rakia1.png"><h3>LOD Original 0,7</h3><a href="#more1" class="btn-more">ВИЖ ПОВЕЧЕ</a></div>
-        <div class="product-item"><img src="rakia2.png"><h3>LOD Cherry 0,7l</h3><a href="#more2" class="btn-more">ВИЖ ПОВЕЧЕ</a></div>
-        <div class="product-item"><img src="rakia3.png"><h3>LOD 12yr 0,7L </h3><a href="#more3" class="btn-more">ВИЖ ПОВЕЧЕ</a></div>
-      </div>
-      <button class="prev">&#10094;</button><button class="next">&#10095;</button>
-      <div class="dots"></div>
+   <div class="slider">
+  <div class="slides">
+    <div class="product-item">
+      <img src="rakia1.png" alt="LOD Original 0,7">
+      <h3>LOD Original 0,7</h3>
+      <a href="#detail1" class="btn-more">ВИЖ ПОВЕЧЕ</a>
     </div>
+    <div class="product-item">
+      <img src="rakia2.png" alt="LOD Cherry 0,7l">
+      <h3>LOD Cherry 0,7l</h3>
+      <a href="#detail2" class="btn-more">ВИЖ ПОВЕЧЕ</a>
+    </div>
+    <div class="product-item">
+      <img src="rakia3.png" alt="LOD 12yr 0,7L">
+      <h3>LOD 12yr 0,7L</h3>
+      <a href="#detail3" class="btn-more">ВИЖ ПОВЕЧЕ</a>
+    </div>
+  </div>
+  <button class="prev">&#10094;</button><button class="next">&#10095;</button>
+  <div class="dots"></div>
+</div>
   </section>
+<div id="detail1" class="product-detail">
+  <img src="rakia1.png" alt="LOD Original 0,7">
+  <div class="desc">
+    <h3>LOD Original 0,7</h3>
+    <p>Класическа рецепта с богат аромат и мек вкус, отлежавала в дъбови бъчви.</p>
+  </div>
+</div>
+
+<div id="detail2" class="product-detail">
+  <img src="rakia2.png" alt="LOD Cherry 0,7l">
+  <div class="desc">
+    <h3>LOD Cherry 0,7l</h3>
+    <p>Ароматен бранд с естествен екстракт от череши – свеж и плодов вкус.</p>
+  </div>
+</div>
+
+<div id="detail3" class="product-detail">
+  <img src="rakia3.png" alt="LOD 12yr 0,7L">
+  <div class="desc">
+    <h3>LOD 12yr 0,7L</h3>
+    <p>Отлежавал 12 години в дъбови бъчви – наситен, комплексен и благороден вкус.</p>
+  </div>
+</div>
 
   <section id="contacts">
     <h2>Контакти</h2>
