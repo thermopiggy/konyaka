@@ -1,0 +1,177 @@
+<!doctype html>
+<html lang="bg">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Full-Screen Hero</title>
+  <style>
+    :root{
+      --nav-bg: rgba(0,0,0,0.25);
+      --nav-text:#fff;
+      --hover: rgba(255,255,255,0.15);
+    }
+    html,body{height:100%;margin:0}
+    body{
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      color:#fff;
+      background:#000;
+    }
+    .hero{
+      position:relative;
+      height:100vh;
+      width:100%;
+      background-image:url("konyaka.png");
+      background-size:cover;
+      background-position:center;
+      background-repeat:no-repeat;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+    }
+    .hero::after{
+      content:"";
+      position:absolute;inset:0;
+      background:linear-gradient(to top, rgba(0,0,0,0.35), rgba(0,0,0,0.15));
+      pointer-events:none;
+    }
+    .nav{
+      position:fixed;top:0;left:0;right:0;z-index:50;
+      display:flex;align-items:center;gap:24px;
+      padding:14px 20px;
+      background:var(--nav-bg);
+      -webkit-backdrop-filter:saturate(140%) blur(8px);
+      backdrop-filter:saturate(140%) blur(8px);
+    }
+    .nav img.logo{
+      height:60px;
+      margin-top:-20px;
+      margin-bottom:-20px;
+      filter: drop-shadow(0 2px 6px rgba(0,0,0,0.7));
+    }
+    .nav a{
+      color:var(--nav-text);text-decoration:none;
+      letter-spacing:.03em;font-weight:600;font-size:15px;
+      padding:8px 12px;border-radius:999px;
+      transition:background .2s ease, transform .05s ease;
+    }
+    .nav a:hover{ background:var(--hover); }
+    .nav a:active{ transform:translateY(1px); }
+    .call-btn{
+      position:fixed;right:18px;bottom:18px;z-index:60;
+      display:inline-flex;align-items:center;justify-content:center;
+      width:56px;height:56px;border-radius:50%;
+      background:rgba(0,0,0,0.55);
+      -webkit-backdrop-filter:saturate(140%) blur(6px);
+      backdrop-filter:saturate(140%) blur(6px);
+      text-decoration:none;
+      transition:transform .15s ease, background .2s ease;
+    }
+    .call-btn:hover{ background:rgba(0,0,0,0.7); transform:translateY(-2px); }
+    .call-btn svg{ width:26px;height:26px; fill:#ffffff; }
+    .headline{
+      position:relative;z-index:10;text-align:center;padding:0 24px;
+      text-shadow:0 2px 12px rgba(0,0,0,.6);
+    }
+    .headline img{ max-width:400px;width:100%;height:auto; }
+    .contacts-icons{
+      margin-top:20px;
+      display:flex;
+      gap:20px;
+      justify-content:center;
+    }
+    .contacts-icons a svg{
+      width:32px;height:32px;fill:#fff;transition:fill .25s;
+    }
+    .contacts-icons a.facebook:hover svg{ fill:#1877f2; }
+    .contacts-icons a.youtube:hover svg{ fill:#ff0000; }
+    .contact-links{
+      display:flex;
+      flex-direction:column;
+      gap:12px;
+      margin:20px 0;
+    }
+    .contact-links a{
+      display:inline-block;
+      padding:10px 18px;
+      border-radius:8px;
+      background:rgba(255,255,255,0.1);
+      color:#fff;
+      text-decoration:none;
+      font-weight:600;
+      transition:background .2s, transform .1s;
+    }
+    .contact-links a:hover{
+      background:rgba(255,255,255,0.25);
+      transform:translateY(-2px);
+    }
+    @media (max-width:520px){
+      .nav{ gap:12px;padding:10px 12px }
+      .nav a{ font-size:14px;padding:7px 10px }
+      .call-btn{ width:52px;height:52px }
+    }
+  </style>
+</head>
+<body>
+  <!-- ПРОЗРАЧЕН FIXED NAV -->
+  <nav class="nav" aria-label="Основна навигация">
+    <img src="lod.png" alt="Logo" class="logo">
+    <a href="#products" aria-label="Продукти">ПРОДУКТИ</a>
+    <a href="#contacts" aria-label="Контакти">КОНТАКТИ</a>
+    <a href="#about" aria-label="За нас">ЗА НАС</a>
+  </nav>
+
+  <!-- FULLSCREEN ИЗОБРАЖЕНИЕ -->
+  <section class="hero">
+    <div class="headline">
+      <img src="lod.png" alt="Lord of the Drinks logo">
+    </div>
+    <!-- Невидим бутон върху бутилката -->
+    <a href="#products" style="
+      position:absolute;
+      left:40%;
+      bottom:20%;
+      transform:translateX(-50%);
+      width:220px;
+      height:300px;
+      z-index:20;
+      display:block;
+    " aria-label="Виж продуктите"></a>
+  </section>
+
+  <!-- FIXED ИКОНА ЗА ТЕЛЕФОН -->
+  <a class="call-btn" href="tel:+359888274414" aria-label="Позвъни">
+    <svg viewBox="0 0 24 24" aria-hidden="true">
+      <path d="M6.62 10.79a15.05 15.05 0 006.59 6.59l2.2-2.2a1 1 0 011.02-.24c1.12.37 2.33.57 3.57.57a1 1 0 011 1V21a1 1 0 01-1 1C10.85 22 2 13.15 2 2a1 1 0 011-1h3.5a1 1 0 011 1c0 1.24.2 2.45.57 3.57a1 1 0 01-.24 1.02l-2.2 2.2z"/>
+    </svg>
+  </a>
+
+  <!-- СЕКЦИЯ ПРОДУКТИ -->
+  <section id="products" style="min-height:100vh;padding:60px 20px;background:#111;display:flex;align-items:center;justify-content:center;flex-direction:column;text-align:center;">
+    <h2>Нашите продукти</h2>
+    <p>Тук ще е каталога с алкохолите.</p>
+  </section>
+
+  <!-- СЕКЦИЯ КОНТАКТИ -->
+  <section id="contacts" style="min-height:100vh;padding:60px 20px;background:#222;display:flex;align-items:center;justify-content:center;flex-direction:column;text-align:center;">
+    <h2>Контакти</h2>
+    <div class="contact-links">
+      <a href="tel:+359888274414">📞 +359 888274414</a>
+      <a href="mailto:lordof@therings.com">✉️ lordof@therings.com</a>
+    </div>
+    <div class="contacts-icons">
+      <a class="facebook" href="https://facebook.com" target="_blank" aria-label="Facebook">
+        <svg viewBox="0 0 24 24"><path d="M22 12c0-5.52-4.48-10-10-10S2 6.48 2 12c0 5 3.66 9.13 8.44 9.88v-6.99H7.9v-2.89h2.54V9.41c0-2.5 1.49-3.89 3.77-3.89 1.09 0 2.24.2 2.24.2v2.46h-1.26c-1.24 0-1.63.77-1.63 1.56v1.87h2.78l-.44 2.89h-2.34v6.99C18.34 21.13 22 17 22 12z"/></svg>
+      </a>
+      <a class="youtube" href="https://youtube.com" target="_blank" aria-label="YouTube">
+        <svg viewBox="0 0 24 24"><path d="M21.8 8.001s-.2-1.4-.8-2c-.8-.8-1.7-.8-2.1-.9C16.2 4.9 12 4.9 12 4.9h-.1s-4.2 0-6.9.2c-.4 0-1.3.1-2.1.9-.6.6-.8 2-.8 2S2 9.6 2 11.2v1.6c0 1.6.2 3.2.2 3.2s.2 1.4.8 2c.8.8 1.9.8 2.4.9 1.7.2 7 .2 7 .2s4.2 0 6.9-.2c.4 0 1.3-.1 2.1-.9.6-.6.8-2 .8-2s.2-1.6.2-3.2v-1.6c0-1.6-.2-3.2-.2-3.2zM10 14.7V9.3l5.2 2.7-5.2 2.7z"/></svg>
+      </a>
+    </div>
+  </section>
+
+  <!-- СЕКЦИЯ ЗА НАС -->
+  <section id="about" style="min-height:100vh;padding:60px 20px;background:#333;display:flex;align-items:center;justify-content:center;flex-direction:column;text-align:center;">
+    <h2>За нас</h2>
+    <p>Кратко представяне на екипа или историята на проекта.</p>
+  </section>
+</body>
+</html>
