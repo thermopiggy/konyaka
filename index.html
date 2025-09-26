@@ -101,22 +101,6 @@
   overflow: hidden;
 }
 
-#about::before {
-  content: "";
-  position: absolute;
-  bottom: -100%; /* скрита извън екрана */
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: url("tanks.png") center/cover no-repeat;
-  transform: translateY(0);
-  transition: transform 1s ease-out;
-}
-
-/* когато секцията влезе във viewport */
-#about.in-view::before {
-  transform: translateY(-100%); /* изплува нагоре */
-}
 
   </style>
 </head>
@@ -204,15 +188,6 @@
     document.querySelector('.next').onclick=()=>{showSlide(index+1);resetAuto()};document.querySelector('.prev').onclick=()=>{showSlide(index-1);resetAuto()};
     function startAuto(){auto=setInterval(()=>showSlide(index+1),5000)}function resetAuto(){clearInterval(auto);startAuto()}
     showSlide(0);startAuto();
-document.addEventListener("scroll", () => {
-  const about = document.querySelector("#about");
-  const rect = about.getBoundingClientRect();
-  if (rect.top < window.innerHeight && rect.bottom > 0) {
-    about.classList.add("in-view");
-  } else {
-    about.classList.remove("in-view");
-  }
-});
 
   </script>
 </body>
