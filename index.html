@@ -42,7 +42,10 @@
     .call-btn svg{width:26px;height:26px;fill:#fff}
 
     /* ABOUT */
-    #about{min-height:100vh;padding:80px 20px;background:#333;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;}
+    #about{min-height:100vh;padding:80px 20px;background:#333;display:flex;align-items:center;justify-content:center;}
+    .about-container{display:flex;align-items:center;justify-content:center;gap:30px;flex-wrap:wrap;max-width:1000px;}
+    .about-img{max-width:420px;width:100%;border-radius:8px;box-shadow:0 4px 12px rgba(0,0,0,0.4);}
+    .about-text{max-width:500px;text-align:left;}
     #about h2{margin:0 0 12px}
 
     /* PRODUCTS */
@@ -97,7 +100,15 @@
 
   <section class="hero"><div class="headline"><img src="lod.png" alt="Lord of the Drinks logo"></div></section>
 
-  <section id="about"><h2>За нас</h2><p>Кратко представяне на екипа и историята.</p></section>
+  <section id="about">
+    <div class="about-container">
+      <img src="tanks.png" alt="Tanks" class="about-img">
+      <div class="about-text">
+        <h2>За нас</h2>
+        <p>Кратко представяне на екипа и историята.</p>
+      </div>
+    </div>
+  </section>
 
   <section id="products" class="products">
     <h2>Нашите продукти</h2>
