@@ -20,111 +20,106 @@
       position:relative;
       height:100vh;
       width:100%;
-      background-image:url("konyaka.png");
-      background-size:cover;
-      background-position:center;
-      background-repeat:no-repeat;
-      display:flex;
-      align-items:center;
-      justify-content:center;
+      background:url("konyaka.png") center/cover no-repeat;
+      display:flex;align-items:center;justify-content:center;
     }
     .hero::after{
-      content:"";
-      position:absolute;inset:0;
+      content:"";position:absolute;inset:0;
       background:linear-gradient(to top, rgba(0,0,0,0.35), rgba(0,0,0,0.15));
       pointer-events:none;
     }
+    /* NAV */
     .nav{
-      position:fixed;top:0;left:0;right:0;z-index:50;
-      display:flex;align-items:center;justify-content:center;gap:24px;
-      padding:14px 20px;
-      background:var(--nav-bg);
-      -webkit-backdrop-filter:saturate(140%) blur(8px);
-      backdrop-filter:saturate(140%) blur(8px);
+      position:fixed;top:0;right:0;z-index:100;
+      padding:16px;
     }
-    .nav a{
-      color:var(--nav-text);text-decoration:none;
-      letter-spacing:.03em;font-weight:600;font-size:15px;
-      padding:8px 12px;border-radius:999px;
-      transition:background .2s ease, transform .05s ease;
+    .hamburger{
+      width:32px;height:24px;display:flex;flex-direction:column;
+      justify-content:space-between;cursor:pointer;
     }
-    .nav a:hover{ background:var(--hover); }
-    .nav a:active{ transform:translateY(1px); }
+    .hamburger span{
+      display:block;height:4px;border-radius:2px;
+      background:#fff;
+    }
+    .menu{
+      position:fixed;top:0;right:-220px;
+      width:220px;height:100%;
+      background:rgba(0,0,0,0.7);
+      display:flex;flex-direction:column;
+      padding:80px 20px;gap:20px;
+      transition:right .3s ease;
+    }
+    .menu.open{ right:0; }
+    .menu a{
+      color:#fff;text-decoration:none;
+      font-weight:600;font-size:18px;
+      padding:10px;
+      border-radius:6px;
+      transition:background .2s;
+    }
+    .menu a:hover{ background:var(--hover); }
+    /* CALL BTN */
     .call-btn{
       position:fixed;right:18px;bottom:18px;z-index:60;
       display:inline-flex;align-items:center;justify-content:center;
       width:56px;height:56px;border-radius:50%;
       background:rgba(0,0,0,0.55);
-      -webkit-backdrop-filter:saturate(140%) blur(6px);
       backdrop-filter:saturate(140%) blur(6px);
       text-decoration:none;
-      transition:transform .15s ease, background .2s ease;
+      transition:transform .15s, background .2s;
     }
     .call-btn:hover{ background:rgba(0,0,0,0.7); transform:translateY(-2px); }
     .call-btn svg{ width:26px;height:26px; fill:#ffffff; }
-    .headline{
-      position:relative;z-index:10;text-align:center;padding:0 24px;
-      text-shadow:0 2px 12px rgba(0,0,0,.6);
-    }
-    .headline h1{ margin:0 0 6px;font-size:clamp(28px,5vw,56px);font-weight:700}
-    .headline p{ margin:0;font-size:clamp(14px,2.2vw,18px);opacity:.9}
-    @media (max-width:520px){
-      .nav{ gap:12px;padding:10px 12px }
-      .nav a{ font-size:14px;padding:7px 10px }
-      .call-btn{ width:52px;height:52px }
-    }
   </style>
 </head>
 <body>
-  <!-- ПРОЗРАЧЕН FIXED NAV -->
-  <nav class="nav" aria-label="Основна навигация">
-    <a href="#products" aria-label="Продукти">ПРОДУКТИ</a>
-    <a href="#contacts" aria-label="Контакти">КОНТАКТИ</a>
-    <a href="#about" aria-label="За нас">ЗА НАС</a>
-  </nav>
-
-  <!-- FULLSCREEN ИЗОБРАЖЕНИЕ -->
-  <section class="hero" role="img" aria-label="Дървена маса със залез, коняк, телефон и кожена книга">
-    <div class="headline">
-      <img src="lod.png" alt="Lord of the Drinks logo" style="max-width:400px;width:100%;height:auto;">
-     
+  <!-- NAV -->
+  <div class="nav">
+    <div class="hamburger" onclick="document.querySelector('.menu').classList.toggle('open')">
+      <span></span><span></span><span></span>
     </div>
-    <!-- Невидим бутон върху бутилката -->
-    <a href="#products" style="
-      position:absolute;
-      left:40%;
-      bottom:20%;
-      transform:translateX(-50%);
-      width:220px;
-      height:300px;
-      z-index:20;
-      display:block;
-    " aria-label="Виж продуктите"></a>
+  </div>
+  <div class="menu">
+    <a href="#products">ПРОДУКТИ</a>
+    <a href="#contacts">КОНТАКТИ</a>
+    <a href="#about">ЗА НАС</a>
+  </div>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="headline">
+      <img src="lod.png" alt="Lord of the Drinks logo" style="max-width:400px;width:100%;height:auto;z-index:10;position:relative;">
+    </div>
+    <a href="#products" style="position:absolute;left:40%;bottom:20%;transform:translateX(-50%);width:220px;height:300px;z-index:20;display:block;" aria-label="Виж продуктите"></a>
   </section>
 
-  <!-- FIXED ИКОНА ЗА ТЕЛЕФОН -->
+  <!-- CALL BTN -->
   <a class="call-btn" href="tel:+359888274414" aria-label="Позвъни">
-    <svg viewBox="0 0 24 24" aria-hidden="true">
-      <path d="M6.62 10.79a15.05 15.05 0 006.59 6.59l2.2-2.2a1 1 0 011.02-.24c1.12.37 2.33.57 3.57.57a1 1 0 011 1V21a1 1 0 01-1 1C10.85 22 2 13.15 2 2a1 1 0 011-1h3.5a1 1 0 011 1c0 1.24.2 2.45.57 3.57a1 1 0 01-.24 1.02l-2.2 2.2z"/>
-    </svg>
+    <svg viewBox="0 0 24 24"><path d="M6.62 10.79a15.05 15.05 0 006.59 6.59l2.2-2.2a1 1 0 011.02-.24c1.12.37 2.33.57 3.57.57a1 1 0 011 1V21a1 1 0 01-1 1C10.85 22 2 13.15 2 2a1 1 0 011-1h3.5a1 1 0 011 1c0 1.24.2 2.45.57 3.57a1 1 0 01-.24 1.02l-2.2 2.2z"/></svg>
   </a>
 
-  <!-- СЕКЦИЯ ПРОДУКТИ -->
+  <!-- PRODUCTS -->
   <section id="products" style="min-height:100vh;padding:60px 20px;background:#111;display:flex;align-items:center;justify-content:center;flex-direction:column;text-align:center;">
     <h2>Нашите продукти</h2>
     <p>Тук ще е каталога с алкохолите.</p>
   </section>
 
-  <!-- СЕКЦИЯ КОНТАКТИ -->
-  <section id="contacts" style="min-height:100vh;padding:60px 20px;background:#222;display:flex;align-items:center;justify-content:center;flex-direction:column;text-align:center;">
-    <h2>Контакти</h2>
-    <p> +359 888274414<br> lordof@therings.com</p>
+  <!-- ABOUT -->
+  <section id="about" style="position:relative;min-height:100vh;padding:60px 20px;display:flex;align-items:center;justify-content:center;flex-direction:column;text-align:center;color:#fff;background:url('tanks.png') center/cover no-repeat;">
+    <div style="position:absolute;inset:0;background:rgba(0,0,0,0.55);z-index:1;"></div>
+    <div style="position:relative;z-index:2;">
+      <h2>За нас</h2>
+      <p>Кратко представяне на екипа или историята на проекта.</p>
+    </div>
   </section>
 
-  <!-- СЕКЦИЯ ЗА НАС -->
-  <section id="about" style="min-height:100vh;padding:60px 20px;background:#333;display:flex;align-items:center;justify-content:center;flex-direction:column;text-align:center;">
-    <h2>За нас</h2>
-    <p>Кратко представяне на екипа или историята на проекта.</p>
+  <!-- CONTACTS -->
+  <section id="contacts" style="min-height:100vh;padding:60px 20px;background:#222;display:flex;align-items:center;justify-content:center;flex-direction:column;text-align:center;">
+    <h2>Контакти</h2>
+    <div class="contact-links">
+      <a href="tel:+359888274414"> +359 888274414</a>
+      <a href="mailto:lordof@therings.com"> lordof@therings.com</a>
+    </div>
   </section>
 </body>
 </html>
