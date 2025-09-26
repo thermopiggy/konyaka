@@ -109,6 +109,33 @@
       .nav a{ font-size:14px;padding:7px 10px }
       .call-btn{ width:52px;height:52px }
     }
+    <section id="about" style="
+  position:relative;
+  min-height:100vh;
+  padding:60px 20px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  flex-direction:column;
+  text-align:center;
+  color:#fff;
+  background:url('tanks.png') center/cover no-repeat;
+">
+  <!-- тъмен слой за сянка -->
+  <div style="
+    position:absolute;
+    inset:0;
+    background:rgba(0,0,0,0.55);
+    z-index:1;
+  "></div>
+
+  <!-- съдържанието винаги отгоре -->
+  <div style="position:relative;z-index:2;">
+    <h2>За нас</h2>
+    <p>Кратко представяне на екипа или историята на проекта.</p>
+  </div>
+</section>
+
   </style>
 </head>
 <body>
