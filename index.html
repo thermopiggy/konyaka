@@ -214,6 +214,15 @@
   #age-gate .age-card { padding: 22px 16px; }
   .age-btn { flex: 1; }
 }
+/* FIX: на мобилно текстът да е под бутилката */
+@media (max-width:768px){
+  .product-detail,
+  .product-detail.reverse{
+    flex-direction: column !important;   /* override на row-reverse по-горе */
+    text-align: center;
+  }
+  .product-detail .desc{ max-width: 620px; }
+}
 
   </style>
 </head>
