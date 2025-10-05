@@ -383,23 +383,31 @@ document.addEventListener("DOMContentLoaded", () => {
 
 <script>
 (function(){
+  const KEY = "ageGateUntil"; // времеви ключ
   const gate = document.getElementById("age-gate");
   const yes  = document.getElementById("age-yes");
   const no   = document.getElementById("age-no");
 
-  // показва екрана веднага
-  gate.classList.add("show");
-  document.body.style.overflow = "hidden";
+  // Проверка дали срокът е изтекъл
+  const validUntil = parseInt(localStorage.getItem(KEY) || "0", 10);
+  const expired = !validUntil || Date.now() > validUntil;
 
-  // зеленият бутон отваря сайта
+  if (expired) {
+    gate.classList.add("show");
+    document.body.style.overflow = "hidden";
+  }
+
+  // "ДА" — запомня за 10 минути
   yes?.addEventListener("click", () => {
+    const TEN_MIN = 10 * 60 * 1000;
+    localStorage.setItem(KEY, String(Date.now() + TEN_MIN));
     gate.classList.remove("show");
     document.body.style.overflow = "";
   });
 
-  // червеният бутон затваря страницата
+  // "НЕ" — затваря страницата
   no?.addEventListener("click", () => {
-    window.close(); // ще работи при отваряне в нов таб/прозорец
+    window.close();
   });
 })();
 </script>
