@@ -223,6 +223,33 @@
   }
   .product-detail .desc{ max-width: 620px; }
 }
+/* Стесняване на мобилния drawer до 110px и подравняване вдясно */
+@media (max-width:768px){
+  .nav-links{
+    width:110px !important;
+    right:0;
+    background:rgba(0,0,0,0.85);
+    flex-direction:column;
+    align-items:flex-end;
+    padding:10px 6px;
+  }
+  .nav-links a{
+    font-size:14px;
+    padding:6px 0;
+    margin-left:8px;  /* малък ляв маргин от ръба */
+    text-align:right;
+  }
+  .lang-flags{
+    flex-direction:column;
+    align-items:flex-end;
+    margin-left:8px;
+    gap:10px;
+  }
+  .lang-flags svg{
+    width:24px;
+    height:16px;
+  }
+}
 
   </style>
 </head>
