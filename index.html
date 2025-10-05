@@ -283,23 +283,13 @@
     showSlide(0);startAuto();
 
   </script>
-  <script>
+<script>
 document.addEventListener("DOMContentLoaded", () => {
   const drawer = document.querySelector(".nav-links");
-  const burger = document.querySelector(".hamburger");
-  if (!drawer) return;
-
-  // Drawer отворен по подразбиране
-  drawer.classList.add("show");
-
-  // Запазва управление чрез хамбургера
-  if (burger) {
-    burger.addEventListener("click", () => {
-      drawer.classList.toggle("show");
-    });
-  }
+  if (drawer) drawer.classList.add("show"); // отворено по подразбиране
 });
 </script>
+
 
 </body>
 </html>
