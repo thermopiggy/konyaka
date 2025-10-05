@@ -144,10 +144,92 @@
     margin-top: 10px; /* запазваме отстъпа */
   }
 }
+/* AGE GATE */
+#age-gate {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.85);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity .25s ease;
+}
+#age-gate.show {
+  opacity: 1;
+  pointer-events: auto;
+}
+#age-gate .age-card {
+  width: min(92vw, 460px);
+  padding: 28px 22px;
+  text-align: center;
+  background: #111;
+  border-radius: 12px;
+  box-shadow: 0 12px 40px rgba(0, 0, 0, .5);
+}
+#age-gate .age-badge {
+  width: 96px;
+  height: 96px;
+  margin: 0 auto 14px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  font: 700 34px/1 system-ui, Segoe UI, Roboto, Arial;
+  background: #c5161a;
+  color: #fff;
+}
+#age-gate p {
+  margin: 6px 0 20px;
+  font-weight: 600;
+  font-size: 18px;
+}
+.age-actions {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+.age-btn {
+  cursor: pointer;
+  border: 0;
+  padding: 12px 26px;
+  font-weight: 800;
+  border-radius: 8px;
+  font-size: 16px;
+}
+.age-btn.yes {
+  background: #4caf11;
+  color: #fff;
+}
+.age-btn.no {
+  background: #b71c1c;
+  color: #fff;
+}
+.age-btn:hover {
+  opacity: .9;
+}
+@media (max-width: 480px) {
+  #age-gate .age-card { padding: 22px 16px; }
+  .age-btn { flex: 1; }
+}
 
   </style>
 </head>
 <body>
+  <!-- Age Gate -->
+<div id="age-gate" aria-modal="true" role="dialog">
+  <div class="age-card">
+    <div class="age-badge">18</div>
+    <p>Имате ли навършени 18 години?</p>
+    <div class="age-actions">
+      <button id="age-yes" class="age-btn yes">ДА</button>
+      <button id="age-no" class="age-btn no">НЕ</button>
+    </div>
+  </div>
+</div>
+
   <nav class="nav">
     <img src="lod.png" alt="Logo" class="logo">
 
@@ -290,6 +372,28 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 </script>
 
+<script>
+(function(){
+  const gate = document.getElementById("age-gate");
+  const yes  = document.getElementById("age-yes");
+  const no   = document.getElementById("age-no");
+
+  // показва екрана веднага
+  gate.classList.add("show");
+  document.body.style.overflow = "hidden";
+
+  // зеленият бутон отваря сайта
+  yes?.addEventListener("click", () => {
+    gate.classList.remove("show");
+    document.body.style.overflow = "";
+  });
+
+  // червеният бутон затваря страницата
+  no?.addEventListener("click", () => {
+    window.close(); // ще работи при отваряне в нов таб/прозорец
+  });
+})();
+</script>
 
 </body>
 </html>
