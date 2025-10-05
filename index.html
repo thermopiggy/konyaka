@@ -127,16 +127,22 @@
 .product-detail.reverse {
   flex-direction: row-reverse;
 }
-/* Подравнява бутоните вдясно в мобилния drawer */
-.drawer-menu {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-end !important;
-  text-align: right !important;
-}
-.drawer-menu a {
-  width: auto !important;
-  margin-right: 10px;
+/* Drawer: подравняване вдясно на мобилно */
+@media (max-width: 768px){
+  .nav .nav-links{
+    align-items: flex-end !important;   /* колона вдясно */
+    text-align: right !important;
+  }
+  .nav .nav-links a{
+    align-self: flex-end !important;    /* всеки линк вдясно */
+    text-align: right !important;
+  }
+  /* флаговете – спрели са в центъра от предно правило */
+  .nav .lang-flags{
+    justify-content: flex-end !important;
+    align-self: flex-end !important;
+    margin-top: 10px; /* запазваме отстъпа */
+  }
 }
 
   </style>
