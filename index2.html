@@ -251,6 +251,58 @@
   }
 }
 
+#about {
+  background: #333;
+  color: #fff;
+  padding: 80px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 60px;
+}
+
+.about-block {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 40px;
+  flex-wrap: wrap;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.about-block.reverse {
+  flex-direction: row-reverse;
+}
+
+.about-img {
+  width: 360px;
+  max-width: 45%;
+  border-radius: 8px;
+  box-shadow: 0 4px 14px rgba(0,0,0,0.45);
+}
+
+.about-text {
+  flex: 1;
+  max-width: 480px;
+  font-size: 16px;
+  line-height: 1.6;
+}
+
+.about-text h2 {
+  margin-bottom: 12px;
+  font-size: 28px;
+}
+
+@media (max-width: 768px) {
+  .about-block, .about-block.reverse {
+    flex-direction: column;
+    text-align: center;
+  }
+  .about-img {
+    max-width: 90%;
+  }
+}
+
 
   </style>
 </head>
@@ -322,19 +374,42 @@
    
 
   <section id="about">
-    <div class="about-container">
-      <img src="tanks.png" alt="Tanks" class="about-img">
-      <div class="about-text">
-        <h2>За нас</h2>
-        <p>
-          Ние от <strong>Lord of the Drinks</strong> създаваме коняк с характер и традиция, вдъхновен от автентичните български земи и богатото наследство на винопроизводството.  
-          Нашата дестилерия съчетава класическите техники на бавно отлежаване в дъбови бъчви с модерни методи за контрол на качеството.  
-          Всяка бутилка е плод на страст, опит и внимание към детайла – от избора на най-доброто грозде до последната капка в чашата ви.  
-          Вярваме, че истинският коняк не просто се пие, а се преживява – като момент на удоволствие, топлина и споделеност.
-        </p>
-      </div>
+  <div class="about-block">
+    <img src="tanks.png" alt="Tanks" class="about-img">
+    <div class="about-text">
+      <h2>За нас</h2>
+      <p>
+        Марката <strong>“Lord I&G”</strong> прави първите си стъпки на пазара през 2000г., лансирана от малка фамилна компания, произвеждаща високоалкохолни продукти. 
+        Собственик и мениджър на тази компания е <strong>Лилия Гюрова</strong>.  
+        В началото фирмата стартира своето производство с няколко популярни напитки като ракия, мастика и водка.
+      </p>
     </div>
-  </section>
+  </div>
+
+  <div class="about-block reverse">
+    <img src="kompaniq.png" alt="Company" class="about-img">
+    <div class="about-text">
+      <p>
+        В момента портфолиото обхваща почти всички видове високоалкохолни напитки.  
+        През годините компанията инвестира в оборудване и производствени мощности с цел подобряване на производствената технология, така че да съответства на високите изисквания на ЕС, 
+        създаване на нови продукти и развиване на марката <strong>“Lord I&G”</strong>.
+      </p>
+    </div>
+  </div>
+
+  <div class="about-block">
+    <img src="sami.png" alt="Sami" class="about-img">
+    <div class="about-text">
+      <p>
+        Повече от 15 години ние работим усърдно за подобряване на вкуса и качеството на нашите продукти и тяхната модерна визия.  
+        Компанията <strong>“Лорд Ай Енд Джи България” ЕООД</strong> се развива динамично и успешно и повече от 10 години се налага на международните пазари 
+        с партньори от Франция, Литва, Латвия, Беларус и САЩ.  
+        Интересът към нашите продукти продължава да расте и от други пазари и чуждестранни клиенти.
+      </p>
+    </div>
+  </div>
+</section>
+
 
   <section id="products" class="products">
     <h2>Нашите продукти</h2>
@@ -342,19 +417,37 @@
   <div class="slides">
     <div class="product-item">
       <img src="rakia1.png" alt="LOD Original 0,7">
-      <h3>LOD Original 0,7</h3>
+      <h3>Гроздова Ракия 0,7</h3>
       <a href="#detail1" class="btn-more">ВИЖ ПОВЕЧЕ</a>
     </div>
     <div class="product-item">
       <img src="rakia2.png" alt="LOD Cherry 0,7l">
-      <h3>LOD Cherry 0,7l</h3>
+      <h3>Бренди 0,7l</h3>
       <a href="#detail2" class="btn-more">ВИЖ ПОВЕЧЕ</a>
     </div>
     <div class="product-item">
       <img src="rakia3.png" alt="LOD 12yr 0,7L">
-      <h3>LOD 12yr 0,7L</h3>
+      <h3>Мастика 0,7L</h3>
       <a href="#detail3" class="btn-more">ВИЖ ПОВЕЧЕ</a>
     </div>
+    <div class="product-item">
+  <img src="vodka.png" alt="LOD Vodka 0,7L">
+  <h3> Водка 0,7L</h3>
+  <a href="#detail4" class="btn-more">ВИЖ ПОВЕЧЕ</a>
+</div>
+
+<div class="product-item">
+  <img src="gin.png" alt="LOD Gin 0,7L">
+  <h3> Джин 0,7L</h3>
+  <a href="#detail5" class="btn-more">ВИЖ ПОВЕЧЕ</a>
+</div>
+
+<div class="product-item">
+  <img src="brandy12.png" alt="LOD Brandy 12y.o. 0,7L">
+  <h3> Бренди 12y.o. 0,7L</h3>
+  <a href="#detail6" class="btn-more">ВИЖ ПОВЕЧЕ</a>
+</div>
+
   </div>
   <button class="prev">&#10094;</button><button class="next">&#10095;</button>
   <div class="dots"></div>
@@ -363,7 +456,7 @@
 <div id="detail1" class="product-detail">
   <img src="rakia1.png" alt="LOD Original 0,7">
   <div class="desc">
-    <h3>LOD Original 0,7</h3>
+    <h3>Гроздова Ракия 0,7</h3>
     <p>Класическа рецепта с богат аромат и мек вкус, отлежавала в дъбови бъчви.</p>
   </div>
 </div>
@@ -371,7 +464,7 @@
 <div id="detail2" class="product-detail reverse">
   <img src="rakia2.png" alt="LOD Cherry 0,7l">
   <div class="desc">
-    <h3>LOD Cherry 0,7l</h3>
+    <h3>Бренди 0,7l</h3>
     <p>Ароматен бранд с естествен екстракт от череши – свеж и плодов вкус.</p>
   </div>
 </div>
@@ -380,9 +473,34 @@
 <div id="detail3" class="product-detail">
   <img src="rakia3.png" alt="LOD 12yr 0,7L">
   <div class="desc">
-    <h3>LOD 12yr 0,7L</h3>
+    <h3>Мастика 0,7L</h3>
     <p>Отлежавал 12 години в дъбови бъчви – наситен, комплексен и благороден вкус.</p>
   </div>
+   </div>
+  <div id="detail4" class="product-detail reverse">
+  <img src="vodka.png" alt="LOD Vodka 0,7L">
+  <div class="desc">
+    <h3>Водка 0,7L</h3>
+    <p>Кристално чиста водка с мек вкус и фин аромат, произведена чрез многократна дестилация.</p>
+  </div>
+</div>
+
+<div id="detail5" class="product-detail">
+  <img src="gin.png" alt="LOD Gin 0,7L">
+  <div class="desc">
+    <h3>Джин 0,7L</h3>
+    <p>Освежаващ джин с растителни екстракти и цитрусова нотка – перфектен за класически коктейли.</p>
+  </div>
+</div>
+
+<div id="detail6" class="product-detail reverse">
+  <img src="brandy12.png" alt="LOD Brandy 12y.o. 0,7L">
+  <div class="desc">
+    <h3>Бренди 12y.o. 0,7L</h3>
+    <p>Бренди, отлежало 12 години в дъбови бъчви – плътно, благородно и с дълъг послевкус.</p>
+  </div>
+</div>
+
 </div>
 
   <section id="contacts">
