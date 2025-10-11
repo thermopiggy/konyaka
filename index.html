@@ -356,14 +356,17 @@
 .lang-flags a[href="index.html"]:hover svg {
   opacity: 1;
 }
-/* Заоблени и замъглени ръбове на картите в секцията с описанията */
-.product-detail {
-  background: rgba(255, 255, 255, 0.05);
-  border-radius: 20px;
-  backdrop-filter: blur(12px);
-  box-shadow: 0 0 20px rgba(0,0,0,0.25);
-  padding: 30px;
+/* Заоблени и леко замъглени ръбове на снимките с бутилки */
+.product-detail img {
+  border-radius: 14px;
+  filter: drop-shadow(0 0 6px rgba(0,0,0,0.4)) blur(0.8px);
+  transition: filter 0.3s ease, transform 0.3s ease;
 }
+.product-detail img:hover {
+  filter: drop-shadow(0 0 10px rgba(0,0,0,0.6)) blur(1px);
+  transform: scale(1.02);
+}
+
 
   </style>
 </head>
