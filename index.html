@@ -251,24 +251,58 @@
   }
 }
 
-.about-img.company {
-  position: absolute;
-  right: 0;
-  bottom: 50%;
-  transform: translateY(50%);
-  width: 300px;
-  max-width: 30%;
-  margin: 0;
+#about {
+  background: #333;
+  color: #fff;
+  padding: 80px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 60px;
 }
 
-.about-img.sami {
-  position: absolute;
-  left: 0;
-  bottom: 0;
-  width: 300px;
-  max-width: 30%;
-  margin: 0;
+.about-block {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 40px;
+  flex-wrap: wrap;
+  max-width: 1100px;
+  margin: 0 auto;
 }
+
+.about-block.reverse {
+  flex-direction: row-reverse;
+}
+
+.about-img {
+  width: 360px;
+  max-width: 45%;
+  border-radius: 8px;
+  box-shadow: 0 4px 14px rgba(0,0,0,0.45);
+}
+
+.about-text {
+  flex: 1;
+  max-width: 480px;
+  font-size: 16px;
+  line-height: 1.6;
+}
+
+.about-text h2 {
+  margin-bottom: 12px;
+  font-size: 28px;
+}
+
+@media (max-width: 768px) {
+  .about-block, .about-block.reverse {
+    flex-direction: column;
+    text-align: center;
+  }
+  .about-img {
+    max-width: 90%;
+  }
+}
+
 
   </style>
 </head>
