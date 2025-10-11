@@ -251,43 +251,7 @@
   }
 }
 
-/* === АЛТЕРНИРАЩО ПОДРЕЖДАНЕ НА ПРОДУКТИ === */
-.product-detail {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 40px;
-  padding: 60px 0;
-}
 
-.product-detail img {
-  width: 280px;
-  height: auto;
-  flex-shrink: 0;
-}
-
-.product-detail .desc {
-  max-width: 420px;
-  color: #fff;
-  text-align: justify;
-}
-
-/* Четните редове обръщат посоката */
-.product-detail:nth-child(even) {
-  flex-direction: row-reverse;
-}
-
-/* Адаптивност за мобилни */
-@media (max-width: 768px) {
-  .product-detail {
-    flex-direction: column !important;
-    text-align: center;
-    gap: 20px;
-  }
-  .product-detail img {
-    width: 220px;
-  }
-}
 
   </style>
 </head>
