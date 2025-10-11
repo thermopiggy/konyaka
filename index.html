@@ -250,6 +250,11 @@
     height:16px;
   }
 }
+/* временно премахва белия фон върху тъмен бекграунд */
+.product-item img{ mix-blend-mode:multiply; }
+@media (prefers-color-scheme: light){
+  .product-item img{ mix-blend-mode:darken; }
+}
 
   </style>
 </head>
