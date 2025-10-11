@@ -328,6 +328,25 @@
   color: #ffd76a !important;
 }
 
+/* Езиков drawer */
+.lang-flags {
+  position: relative;
+}
+.lang-drawer {
+  position: absolute;
+  top: 40px;
+  right: 0;
+  background: rgba(0,0,0,0.85);
+  border-radius: 6px;
+  padding: 10px;
+  display: none;
+  flex-direction: column;
+  gap: 10px;
+  z-index: 100;
+}
+.lang-drawer.show {
+  display: flex;
+}
 
   </style>
 </head>
@@ -610,6 +629,26 @@ document.addEventListener("scroll", () => {
     if (rect.top < window.innerHeight - 100) {
       img.classList.add("visible");
     }
+  });
+});
+</script>
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  const bgFlag = document.querySelector('.lang-flags a[href="index.html"]');
+  const ruFlag = document.querySelector('.lang-flags a[href="index-ru.html"]');
+  const enFlag = document.querySelector('.lang-flags a[href="index-en.html"]');
+
+  // създаваме drawer и местим другите флагове в него
+  const drawer = document.createElement('div');
+  drawer.className = 'lang-drawer';
+  drawer.appendChild(enFlag);
+  drawer.appendChild(ruFlag);
+  bgFlag.parentElement.appendChild(drawer);
+
+  // при клик на българското знаме отваряме/затваряме drawer-а
+  bgFlag.addEventListener('click', e => {
+    e.preventDefault();
+    drawer.classList.toggle('show');
   });
 });
 </script>
