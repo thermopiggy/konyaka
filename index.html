@@ -302,6 +302,16 @@
     max-width: 90%;
   }
 }
+.about-img {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 1.8s ease, transform 1.8s ease;
+}
+
+.about-img.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
 
 
   </style>
@@ -576,6 +586,16 @@ document.addEventListener("DOMContentLoaded", () => {
     window.close();
   });
 })();
+</script>
+<script>
+document.addEventListener("scroll", () => {
+  document.querySelectorAll(".about-img").forEach(img => {
+    const rect = img.getBoundingClientRect();
+    if (rect.top < window.innerHeight - 100) {
+      img.classList.add("visible");
+    }
+  });
+});
 </script>
 
 </body>
