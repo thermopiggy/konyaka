@@ -144,12 +144,133 @@
     margin-top: 10px; /* запазваме отстъпа */
   }
 }
+/* AGE GATE */
+#age-gate {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.85);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity .25s ease;
+}
+#age-gate.show {
+  opacity: 1;
+  pointer-events: auto;
+}
+#age-gate .age-card {
+  width: min(92vw, 460px);
+  padding: 28px 22px;
+  text-align: center;
+  background: #111;
+  border-radius: 12px;
+  box-shadow: 0 12px 40px rgba(0, 0, 0, .5);
+}
+#age-gate .age-badge {
+  width: 96px;
+  height: 96px;
+  margin: 0 auto 14px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  font: 700 34px/1 system-ui, Segoe UI, Roboto, Arial;
+  background: #c5161a;
+  color: #fff;
+}
+#age-gate p {
+  margin: 6px 0 20px;
+  font-weight: 600;
+  font-size: 18px;
+}
+.age-actions {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+.age-btn {
+  cursor: pointer;
+  border: 0;
+  padding: 12px 26px;
+  font-weight: 800;
+  border-radius: 8px;
+  font-size: 16px;
+}
+.age-btn.yes {
+  background: #4caf11;
+  color: #fff;
+}
+.age-btn.no {
+  background: #b71c1c;
+  color: #fff;
+}
+.age-btn:hover {
+  opacity: .9;
+}
+@media (max-width: 480px) {
+  #age-gate .age-card { padding: 22px 16px; }
+  .age-btn { flex: 1; }
+}
+/* FIX: на мобилно текстът да е под бутилката */
+@media (max-width:768px){
+  .product-detail,
+  .product-detail.reverse{
+    flex-direction: column !important;   /* override на row-reverse по-горе */
+    text-align: center;
+  }
+  .product-detail .desc{ max-width: 620px; }
+}
+/* Стесняване на мобилния drawer до 110px и подравняване вдясно */
+@media (max-width:768px){
+  .nav-links{
+    width:95px !important;
+    right:0;
+    background:rgba(0,0,0,0.25);
+    flex-direction:column;
+    align-items:flex-end;
+    padding:10px 6px;
+  }
+  .nav-links a{
+    font-size:14px;
+    padding:6px 0;
+    margin-left:8px;  /* малък ляв маргин от ръба */
+    text-align:right;
+  }
+  .lang-flags{
+    flex-direction:column;
+    align-items:flex-end;
+    margin-left:8px;
+    gap:10px;
+  }
+  .lang-flags svg{
+    width:24px;
+    height:16px;
+  }
+}
+
 
   </style>
 </head>
 <body>
+  <!-- Age Gate -->
+<div id="age-gate" aria-modal="true" role="dialog">
+  <div class="age-card">
+    <div class="age-badge">18</div>
+    <p>Имате ли навършени 18 години?</p>
+    <div class="age-actions">
+      <button id="age-yes" class="age-btn yes">ДА</button>
+      <button id="age-no" class="age-btn no">НЕ</button>
+    </div>
+  </div>
+</div>
+
   <nav class="nav">
     <img src="lod.png" alt="Logo" class="logo">
+ 
+
 
     <div class="hamburger" onclick="document.querySelector('.nav-links').classList.toggle('show')">
       <span></span><span></span><span></span>
@@ -160,32 +281,45 @@
       <a href="#contacts">КОНТАКТИ</a>
       <a href="#about">ЗА НАС</a>
 
-      <div class="lang-flags">
-        <!-- UK -->
-        <a href="index-en.html"><svg viewBox="0 0 60 30" width="28" height="18" aria-hidden="true">
-  <defs>
-    <clipPath id="clip-uk">
-      <rect width="60" height="30"></rect>
-    </clipPath>
-  </defs>
-  <g clip-path="url(#clip-uk)" shape-rendering="crispEdges">
-    <rect width="60" height="30" fill="#012169"/>
-    <path d="M0 0L60 30M60 0L0 30" stroke="#FFFFFF" stroke-width="6" stroke-linecap="square"/>
-    <path d="M0 0L60 30M60 0L0 30" stroke="#C8102E" stroke-width="4" stroke-linecap="square"/>
-    <path d="M30 0V30M0 15H60" stroke="#FFFFFF" stroke-width="10" stroke-linecap="square"/>
-    <path d="M30 0V30M0 15H60" stroke="#C8102E" stroke-width="6" stroke-linecap="square"/>
-  </g>
-</svg>
+   <div class="lang-flags">
+  <!-- EN -->
+  <a href="index-en.html" aria-label="English">
+    <svg viewBox="0 0 60 30" width="28" height="18" aria-hidden="true">
+      <defs><clipPath id="clip-uk"><rect width="60" height="30"></rect></clipPath></defs>
+      <g clip-path="url(#clip-uk)" shape-rendering="crispEdges">
+        <rect width="60" height="30" fill="#012169"/>
+        <path d="M0 0L60 30M60 0L0 30" stroke="#FFFFFF" stroke-width="6" stroke-linecap="square"/>
+        <path d="M0 0L60 30M60 0L0 30" stroke="#C8102E" stroke-width="4" stroke-linecap="square"/>
+        <path d="M30 0V30M0 15H60" stroke="#FFFFFF" stroke-width="10" stroke-linecap="square"/>
+        <path d="M30 0V30M0 15H60" stroke="#C8102E" stroke-width="6" stroke-linecap="square"/>
+      </g>
+    </svg>
+  </a>
 
-        <!-- RU -->
-        <a href="index-ru.html"><svg viewBox="0 0 3 2"><rect width="3" height="2" fill="#fff"/><rect y="0.6667" width="3" height="0.6667" fill="#0039A6"/><rect y="1.3333" width="3" height="0.6667" fill="#D52B1E"/></svg></a>
-        <!-- BG -->
-        <a href="index.html"><svg viewBox="0 0 9 6"><rect width="9" height="6" fill="#D62612"/><rect width="9" height="4" fill="#00966E"/><rect width="9" height="2" fill="#fff"/></svg></a>
-      </div>
+  <!-- RU -->
+  <a href="index-ru.html" aria-label="Русский">
+    <svg viewBox="0 0 3 2" width="28" height="18" aria-hidden="true">
+      <rect width="3" height="2" fill="#fff"/>
+      <rect y="0.6667" width="3" height="0.6667" fill="#0039A6"/>
+      <rect y="1.3333" width="3" height="0.6667" fill="#D52B1E"/>
+    </svg>
+  </a>
+
+  <!-- BG -->
+  <a href="index.html" aria-label="Български">
+    <svg viewBox="0 0 9 6" width="28" height="18" aria-hidden="true">
+      <rect width="9" height="6" fill="#D62612"/>
+      <rect width="9" height="4" fill="#00966E"/>
+      <rect width="9" height="2" fill="#fff"/>
+    </svg>
+  </a>
+</div>
+
     </div>
   </nav>
 
   <section class="hero"><div class="headline"><img src="lod.png" alt="Lord of the Drinks logo"></div></section>
+   
 
   <section id="about">
     <div class="about-container">
@@ -290,6 +424,36 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 </script>
 
+<script>
+(function(){
+  const KEY = "ageGateUntil"; // времеви ключ
+  const gate = document.getElementById("age-gate");
+  const yes  = document.getElementById("age-yes");
+  const no   = document.getElementById("age-no");
+
+  // Проверка дали срокът е изтекъл
+  const validUntil = parseInt(localStorage.getItem(KEY) || "0", 10);
+  const expired = !validUntil || Date.now() > validUntil;
+
+  if (expired) {
+    gate.classList.add("show");
+    document.body.style.overflow = "hidden";
+  }
+
+  // "ДА" — запомня за 10 минути
+  yes?.addEventListener("click", () => {
+    const TEN_MIN = 10 * 60 * 1000;
+    localStorage.setItem(KEY, String(Date.now() + TEN_MIN));
+    gate.classList.remove("show");
+    document.body.style.overflow = "";
+  });
+
+  // "НЕ" — затваря страницата
+  no?.addEventListener("click", () => {
+    window.close();
+  });
+})();
+</script>
 
 </body>
 </html>
